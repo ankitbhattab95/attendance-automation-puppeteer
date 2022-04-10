@@ -20,7 +20,7 @@ const begin = async (actionId) => {
     await page.waitForNavigation();
 
     await page.click('#SR_R672732339046502638_tab') // Pin-board tab
-    // await page.click('#' + actionId) // punch-in or punch-out
+    await page.click('#' + actionId) // punch-in or punch-out
     await sleep(process.env.SLEEP_TIME);
 
     await page.click('#ATTEN_REP_BTN_ID')
@@ -34,7 +34,7 @@ const begin = async (actionId) => {
     const filename = name
     const path = './' + name
     const subject = 'LOGIN success'
-    // await sendMail(filename, path, subject);
+    await sendMail(filename, path, subject);
 };
 
 function sleep(ms) {
