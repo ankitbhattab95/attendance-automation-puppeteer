@@ -5,7 +5,7 @@ const nodemailer = require("nodemailer");
 const smtpTransport = require('nodemailer-smtp-transport');
 const app = express()
 const PORT = process.env.PORT || 3000
-
+console.log(">.........process.env.URL", typeof (process.env.URL))
 
 const begin = async (actionId, action) => {
     const userName = process.env.USERNAME
@@ -13,7 +13,7 @@ const begin = async (actionId, action) => {
     // const browser = await puppeteer.launch({ headless: true });
     const browser = await puppeteer.launch({
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      });
+    });
     const page = await browser.newPage();
     await page.goto(process.env.URL);
     await page.type('input[id=P515_USERNAME]', userName)
@@ -93,6 +93,12 @@ app.get('/logout', (req, res) => {
 })
 
 app.get('/', (req, res) => {
+    console.log(">.....process.env.USERNAME", process.env.USERNAME)
+    console.log(">.....process.env.PASSWORD", process.env.PASSWORD)
+    console.log(">.....process.env.URL", process.env.URL)
+    console.log(">.....process.env.APP_PASS", process.env.APP_PASS)
+    console.log(">.....process.env.FROM_MAIL", process.env.FROM_MAIL)
+    console.log(">.....process.env.SLEEP_TIME", process.env.SLEEP_TIME)
     res.send('test')
 })
 
