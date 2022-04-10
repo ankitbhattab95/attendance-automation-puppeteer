@@ -1,0 +1,14 @@
+
+// list of heroku apps
+    - heroku apps
+
+// ssh into heroku machine
+    - heroku run bash -a attendance-automate
+
+// check logs
+    - heroku logs --tail -a attendance-automate
+
+// follow below steps to add env variables in heroku
+    - ssh into machine
+    - touch .env
+    - echo "USERNAME=" >> .env

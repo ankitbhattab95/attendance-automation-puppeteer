@@ -10,7 +10,10 @@ const PORT = process.env.PORT || 3000
 const begin = async (actionId, action) => {
     const userName = process.env.USERNAME
     const password = process.env.PASSWORD
-    const browser = await puppeteer.launch({ headless: true });
+    // const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      });
     const page = await browser.newPage();
     await page.goto(process.env.URL);
     await page.type('input[id=P515_USERNAME]', userName)
