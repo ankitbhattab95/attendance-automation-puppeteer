@@ -18,13 +18,14 @@ const begin = async (actionId, action) => {
     await page.goto(process.env.URL);
     await page.type('input[id=P515_USERNAME]', userName)
     await page.type('input[id=P515_PASSWORD]', password)
-    // await page.click('#B142330463764352491')
+    await page.click('#B142330463764352491')
     // await page.waitForNavigation();
 
-    await Promise.all([
-        page.click("#B142330463764352491"),
-        page.waitForNavigation()
-    ]);
+    // await Promise.all([
+    //     page.click("#B142330463764352491"),
+    //     page.waitForNavigation()
+    // ]);
+    await sleep(3 * process.env.SLEEP_TIME);
 
     console.log("> authentication successful")
     await page.click('#SR_R672732339046502638_tab') // Pinboard tab
