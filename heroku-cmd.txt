@@ -12,3 +12,6 @@
     - ssh into machine
     - touch .env
     - echo "USERNAME=" >> .env
+
+// debian puppeteer support
+    heroku buildpacks:add jontewks/puppeteer -a attendance-automate

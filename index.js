@@ -22,10 +22,14 @@ const begin = async (actionId, action) => {
 
     await page.waitForNavigation();
 
+    console.log("> authentication successful")
     await page.click('#SR_R672732339046502638_tab') // Pinboard tab
     await page.click('#' + actionId) // punch-in or punch-out
+
+    console.log("> action successful", action)
     await sleep(process.env.SLEEP_TIME);
 
+    console.log("> view attendance logs", action)
     await page.click('#ATTEN_REP_BTN_ID')
     await sleep(process.env.SLEEP_TIME);
 
@@ -80,10 +84,12 @@ async function sendMail(filename, path, subject) {
 
 app.get('/login', (req, res) => {
     begin('P1_PUNCH_IN', 'login')
+    res.send('login process initiated')
 })
 
 app.get('/logout', (req, res) => {
-    begin('P1_PUNCH_OUT', logout)
+    begin('P1_PUNCH_OUT', 'logout')
+    res.send('logout process initiated')
 })
 
 app.get('/', (req, res) => {
