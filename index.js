@@ -19,7 +19,7 @@ const begin = async (actionId) => {
 
     await page.waitForNavigation();
 
-    await page.click('#SR_R672732339046502638_tab') // Pin-board tab
+    await page.click('#SR_R672732339046502638_tab') // Pinboard tab
     await page.click('#' + actionId) // punch-in or punch-out
     await sleep(process.env.SLEEP_TIME);
 
