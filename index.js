@@ -7,7 +7,7 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 
-const begin = async (actionId) => {
+const begin = async (actionId, action) => {
     const userName = process.env.USERNAME
     const password = process.env.PASSWORD
     const browser = await puppeteer.launch({ headless: true });
@@ -33,9 +33,19 @@ const begin = async (actionId) => {
     // mail init
     const filename = name
     const path = './' + name
-    const subject = 'LOGIN success'
+    let subject = getSubject(action);
     await sendMail(filename, path, subject);
 };
+
+function getSubject(action) {
+    let subject = '';
+    if (action === 'login') {
+        subject = 'LOGIN success';
+    } else if (action === 'logout') {
+        subject = 'LOGOUT success';
+    }
+    return subject;
+}
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -66,11 +76,11 @@ async function sendMail(filename, path, subject) {
 }
 
 app.get('/login', (req, res) => {
-    begin('P1_PUNCH_IN')
+    begin('P1_PUNCH_IN', 'login')
 })
 
 app.get('/logout', (req, res) => {
-    begin('P1_PUNCH_OUT')
+    begin('P1_PUNCH_OUT', logout)
 })
 
 app.get('/', (req, res) => {
