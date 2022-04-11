@@ -19,15 +19,11 @@ const begin = async (actionId, action) => {
     await page.type('input[id=P515_USERNAME]', userName)
     await page.type('input[id=P515_PASSWORD]', password)
     await page.click('#B142330463764352491')
-    // await page.waitForNavigation();
-
-    // await Promise.all([
-    //     page.click("#B142330463764352491"),
-    //     page.waitForNavigation()
-    // ]);
-    await sleep(3 * process.env.SLEEP_TIME);
-
+    await page.waitForNavigation({
+        waitUntil: 'domcontentloaded'
+    });
     console.log("> authentication successful")
+
     await page.click('#SR_R672732339046502638_tab') // Pinboard tab
     await page.click('#' + actionId) // punch-in or punch-out
 
@@ -104,7 +100,7 @@ app.get('/', (req, res) => {
     console.log(">.....process.env.APP_PASS", process.env.APP_PASS)
     console.log(">.....process.env.FROM_MAIL", process.env.FROM_MAIL)
     console.log(">.....process.env.SLEEP_TIME", process.env.SLEEP_TIME)
-    res.send('test')
+    res.send('test1')
 })
 
 app.listen(PORT, () => console.log(`App listening on port=${PORT}`))
