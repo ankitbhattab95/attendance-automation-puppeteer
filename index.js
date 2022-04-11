@@ -81,6 +81,7 @@ async function sendMail(filename, path, subject) {
     });
 
     console.log("Message sent: %s", info.messageId);
+    process.exit(1)
 }
 
 app.get('/login', (req, res) => {
@@ -100,7 +101,8 @@ app.get('/', (req, res) => {
     console.log(">.....process.env.APP_PASS", process.env.APP_PASS)
     console.log(">.....process.env.FROM_MAIL", process.env.FROM_MAIL)
     console.log(">.....process.env.SLEEP_TIME", process.env.SLEEP_TIME)
-    res.send('test1')
+    res.send('test2')
+    process.exit(1)
 })
 
 app.listen(PORT, () => console.log(`App listening on port=${PORT}`))
