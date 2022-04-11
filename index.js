@@ -19,11 +19,11 @@ const begin = async (actionId, action) => {
     await page.type('input[id=P515_USERNAME]', userName)
     await page.type('input[id=P515_PASSWORD]', password)
     await page.click('#B142330463764352491')
-    await page.waitForNavigation({
-        waitUntil: 'domcontentloaded'
-    });
+    // await page.waitForNavigation({waitUntil: 'domcontentloaded'});
+    // await page.waitForSelector("html")
     console.log("> authentication successful")
 
+    await sleep(process.env.SLEEP_TIME * 4);
     await page.click('#SR_R672732339046502638_tab') // Pinboard tab
     await page.click('#' + actionId) // punch-in or punch-out
 
